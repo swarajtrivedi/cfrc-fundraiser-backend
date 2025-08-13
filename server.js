@@ -36,9 +36,9 @@ app.post('/create-checkout-session', async (req, res) => {
     if (!Number.isInteger(amount)) {
       return res.status(400).json({ error: 'Amount must be an integer (in cents).' });
     }
-    if (amount < 2500) {
-      return res.status(400).json({ error: 'Minimum donation is $25.' });
-    }
+    // if (amount < 2500) {
+    //   return res.status(400).json({ error: 'Minimum donation is $25.' });
+    // }
     
 
     const session = await stripe.checkout.sessions.create({
