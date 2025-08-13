@@ -30,7 +30,8 @@ app.get('/', (_req, res) => {
 // Create Stripe Checkout Session
 app.post('/create-checkout-session', async (req, res) => {
   try {
-    const { amount, email } = req.body; 
+    const { amount } = req.body; 
+    const email = req.body.metadata.email;
 
     // Validate amount
     if (!Number.isInteger(amount)) {
