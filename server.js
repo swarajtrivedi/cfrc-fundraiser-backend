@@ -30,7 +30,7 @@ app.get('/', (_req, res) => {
 // Create Stripe Checkout Session
 app.post('/create-checkout-session', async (req, res) => {
   try {
-    const { amount, email } = req.body; // amount in cents (e.g., 2500 == $25)
+    const { amount, email } = req.body; 
 
     // Validate amount
     if (!Number.isInteger(amount)) {
@@ -39,10 +39,7 @@ app.post('/create-checkout-session', async (req, res) => {
     if (amount < 2500) {
       return res.status(400).json({ error: 'Minimum donation is $25.' });
     }
-    // Optional: set a reasonable max (e.g., $10,000)
-    if (amount > 1_000_000) {
-      return res.status(400).json({ error: 'Maximum donation exceeded.' });
-    }
+    
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
